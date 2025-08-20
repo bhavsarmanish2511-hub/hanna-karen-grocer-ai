@@ -11,15 +11,17 @@ interface Purchase {
   total: number;
   category: string;
   status: 'delivered' | 'processing' | 'cancelled';
+  orderType: 'online' | 'offline';
+  deliveryTime?: string;
 }
 
 const purchases: Purchase[] = [
-  { id: '1', date: '2035-08-18', store: 'FreshMart 2035', items: 12, total: 67.50, category: 'Weekly Shop', status: 'delivered' },
-  { id: '2', date: '2035-08-15', store: 'OrganicHub', items: 8, total: 45.20, category: 'Organic Produce', status: 'delivered' },
-  { id: '3', date: '2035-08-12', store: 'QuickGrocer AI', items: 5, total: 23.80, category: 'Emergency Items', status: 'delivered' },
-  { id: '4', date: '2035-08-10', store: 'FreshMart 2035', items: 15, total: 89.30, category: 'Monthly Stock', status: 'delivered' },
-  { id: '5', date: '2035-08-08', store: 'BabyMart Express', items: 6, total: 34.60, category: 'Ron\'s Essentials', status: 'processing' },
-  { id: '6', date: '2035-08-05', store: 'FreshMart 2035', items: 10, total: 56.90, category: 'Weekly Shop', status: 'delivered' },
+  { id: '1', date: '2035-08-18', store: 'FreshMart 2035', items: 12, total: 67.50, category: 'Weekly Shop', status: 'delivered', orderType: 'online', deliveryTime: '45 mins' },
+  { id: '2', date: '2035-08-15', store: 'OrganicHub', items: 8, total: 45.20, category: 'Organic Produce', status: 'delivered', orderType: 'offline' },
+  { id: '3', date: '2035-08-12', store: 'QuickGrocer AI', items: 5, total: 23.80, category: 'Emergency Items', status: 'delivered', orderType: 'online', deliveryTime: '30 mins' },
+  { id: '4', date: '2035-08-10', store: 'FreshMart 2035', items: 15, total: 89.30, category: 'Monthly Stock', status: 'delivered', orderType: 'online', deliveryTime: '60 mins' },
+  { id: '5', date: '2035-08-08', store: 'BabyMart Express', items: 6, total: 34.60, category: 'Ron\'s Essentials', status: 'processing', orderType: 'online' },
+  { id: '6', date: '2035-08-05', store: 'FreshMart 2035', items: 10, total: 56.90, category: 'Weekly Shop', status: 'delivered', orderType: 'offline' },
 ];
 
 const weeklyData = [
@@ -153,6 +155,20 @@ export const PurchaseHistory = () => {
                     <div className="text-xs text-muted-foreground">
                       {purchase.items} items • {purchase.category}
                     </div>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className={`text-xs ${
+                        purchase.orderType === 'online' 
+                          ? 'bg-neon-cyan/10 text-neon-cyan border-neon-cyan/30' 
+                          : 'bg-muted/20 text-muted-foreground border-muted-foreground/30'
+                      }`}>
+                        {purchase.orderType.toUpperCase()}
+                      </Badge>
+                      {purchase.deliveryTime && (
+                        <span className="text-xs text-neon-cyan">
+                          {purchase.deliveryTime}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="text-right">
                     <div className="font-mono text-foreground">${purchase.total.toFixed(2)}</div>
@@ -163,11 +179,25 @@ export const PurchaseHistory = () => {
           </div>
         </div>
 
-        {/* Quick Stats */}
+        {/* Store Analytics */}
         <div className="mt-6 p-4 rounded-lg bg-muted/20 border border-border/30">
-          <div className="text-center">
-            <div className="text-xs text-muted-foreground mb-1">Most Frequent Store</div>
-            <div className="text-sm font-medium text-neon-cyan">FreshMart 2035</div>
+          <h4 className="text-sm font-medium text-foreground mb-3">Store Analytics</h4>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center">
+              <div className="text-xs text-muted-foreground mb-1">Most Frequent Store</div>
+              <div className="text-sm font-medium text-neon-cyan">FreshMart 2035</div>
+            </div>
+            <div className="text-center">
+              <div className="text-xs text-muted-foreground mb-1">Order Split</div>
+              <div className="flex items-center justify-center gap-2">
+                <Badge variant="outline" className="text-xs bg-neon-cyan/10 text-neon-cyan border-neon-cyan/30">
+                  {purchases.filter(p => p.orderType === 'online').length} Online
+                </Badge>
+                <Badge variant="outline" className="text-xs bg-muted/20 text-muted-foreground border-muted-foreground/30">
+                  {purchases.filter(p => p.orderType === 'offline').length} Offline
+                </Badge>
+              </div>
+            </div>
           </div>
         </div>
       </div>

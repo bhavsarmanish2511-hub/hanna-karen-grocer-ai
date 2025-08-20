@@ -141,7 +141,7 @@ const inventoryData: InventoryCategory[] = [
   }
 ];
 
-export const InventoryExplorer = () => {
+export const InventoryExplorer = ({ onDeepDive }: { onDeepDive?: () => void }) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [expandedSubcategories, setExpandedSubcategories] = useState<Set<string>>(new Set());
   const [searchTerm, setSearchTerm] = useState('');
@@ -185,7 +185,7 @@ export const InventoryExplorer = () => {
   );
 
   return (
-    <Card className="bg-gradient-card border-border/50 shadow-glow transition-all duration-300 hover:shadow-neon">
+    <Card className="bg-gradient-card border-border/50 shadow-glow transition-all duration-300 hover:shadow-neon cursor-pointer group" onClick={onDeepDive}>
       <div className="p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -194,8 +194,8 @@ export const InventoryExplorer = () => {
               <Layers className="h-6 w-6 text-neon-cyan" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-foreground">Inventory Explorer</h2>
-              <p className="text-muted-foreground">Deep dive into your household inventory</p>
+              <h2 className="text-2xl font-bold text-foreground group-hover:text-neon-cyan transition-colors">Inventory Explorer</h2>
+              <p className="text-muted-foreground group-hover:text-neon-cyan/70 transition-colors">Deep dive into your household inventory • Click to explore</p>
             </div>
           </div>
           <div className="flex gap-2">

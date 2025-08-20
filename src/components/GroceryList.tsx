@@ -140,7 +140,7 @@ export const GroceryList = () => {
         <Button
           onClick={handleSendToStore}
           disabled={isGenerating || isSent}
-          className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 text-white font-medium"
+          className="w-full bg-gradient-primary hover:shadow-neon transition-all duration-300 text-white font-medium mb-3"
         >
           {isGenerating ? (
             <div className="flex items-center gap-2">
@@ -158,6 +158,17 @@ export const GroceryList = () => {
               Send to Preferred Store
             </div>
           )}
+        </Button>
+
+        {/* Order Online Button */}
+        <Button
+          onClick={() => {/* Handle online order */}}
+          className="w-full bg-neon-purple/20 hover:bg-neon-purple/30 border border-neon-purple/50 hover:shadow-purple transition-all duration-300 text-neon-purple font-medium"
+        >
+          <div className="flex items-center gap-2">
+            <CheckCircle className="h-4 w-4" />
+            Order Online
+          </div>
         </Button>
 
         {isSent && (

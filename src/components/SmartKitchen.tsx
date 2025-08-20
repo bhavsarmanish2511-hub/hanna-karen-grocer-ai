@@ -24,7 +24,7 @@ const pantryItems: PantryItem[] = [
 
 const locations = ['All Areas', 'Pantry Shelf 1', 'Pantry Shelf 2', 'Counter Top', 'Coffee Station'];
 
-export const SmartKitchen = () => {
+export const SmartKitchen = ({ onDeepDive }: { onDeepDive?: () => void }) => {
   const [selectedLocation, setSelectedLocation] = useState('All Areas');
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -45,7 +45,7 @@ export const SmartKitchen = () => {
   const lowStockItems = pantryItems.filter(item => item.stockLevel === 'low' || item.stockLevel === 'empty');
 
   return (
-    <Card className="bg-gradient-card border-border/50 shadow-glow transition-all duration-300 hover:shadow-purple">
+    <Card className="bg-gradient-card border-border/50 shadow-glow transition-all duration-300 hover:shadow-purple cursor-pointer group" onClick={onDeepDive}>
       <div className="p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -54,8 +54,8 @@ export const SmartKitchen = () => {
               <ChefHat className="h-6 w-6 text-neon-purple" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-foreground">Smart Kitchen</h2>
-              <p className="text-muted-foreground">Pantry & consumables tracking</p>
+              <h2 className="text-2xl font-bold text-foreground group-hover:text-neon-purple transition-colors">Smart Kitchen</h2>
+              <p className="text-muted-foreground group-hover:text-neon-purple/70 transition-colors">Pantry & consumables tracking • Click to explore</p>
             </div>
           </div>
           {lowStockItems.length > 0 && (

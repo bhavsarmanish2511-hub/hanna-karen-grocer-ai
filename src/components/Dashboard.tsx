@@ -1,11 +1,18 @@
+import { useState } from 'react';
 import { SmartRefrigerator } from './SmartRefrigerator';
 import { SmartKitchen } from './SmartKitchen';
 import { GroceryList } from './GroceryList';
 import { PurchaseHistory } from './PurchaseHistory';
 import { InventoryExplorer } from './InventoryExplorer';
-import { KarenAI } from './KarenAI';
+import { SmartRefrigeratorModal } from './modals/SmartRefrigeratorModal';
+import { SmartKitchenModal } from './modals/SmartKitchenModal';
+import { InventoryExplorerModal } from './modals/InventoryExplorerModal';
 
 export const Dashboard = () => {
+  const [fridgeModalOpen, setFridgeModalOpen] = useState(false);
+  const [kitchenModalOpen, setKitchenModalOpen] = useState(false);
+  const [inventoryModalOpen, setInventoryModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-deep-space relative overflow-hidden">
       {/* Ambient Background Effects */}
@@ -35,7 +42,7 @@ export const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           {/* Smart Refrigerator - Takes full width on mobile, 2/3 on large screens */}
           <div className="lg:col-span-2">
-            <SmartRefrigerator />
+            <SmartRefrigerator onDeepDive={() => setFridgeModalOpen(true)} />
           </div>
           
           {/* AI Grocery List */}
@@ -47,7 +54,7 @@ export const Dashboard = () => {
         {/* Second Row */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Smart Kitchen */}
-          <SmartKitchen />
+          <SmartKitchen onDeepDive={() => setKitchenModalOpen(true)} />
           
           {/* Purchase History */}
           <PurchaseHistory />
@@ -55,12 +62,23 @@ export const Dashboard = () => {
 
         {/* Inventory Explorer - Full Width */}
         <div className="mb-8">
-          <InventoryExplorer />
+          <InventoryExplorer onDeepDive={() => setInventoryModalOpen(true)} />
         </div>
       </div>
 
-      {/* Karen AI Assistant Widget */}
-      <KarenAI />
+      {/* Deep Dive Modals */}
+      <SmartRefrigeratorModal 
+        isOpen={fridgeModalOpen} 
+        onClose={() => setFridgeModalOpen(false)}
+      />
+      <SmartKitchenModal 
+        isOpen={kitchenModalOpen} 
+        onClose={() => setKitchenModalOpen(false)}
+      />
+      <InventoryExplorerModal 
+        isOpen={inventoryModalOpen} 
+        onClose={() => setInventoryModalOpen(false)}
+      />
     </div>
   );
 };

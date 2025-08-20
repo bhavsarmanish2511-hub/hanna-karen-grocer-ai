@@ -24,7 +24,7 @@ const fridgeItems: FridgeItem[] = [
 
 const compartments = ['All', 'Dairy', 'Vegetables', 'Beverages', 'Leftovers', 'Freezer'];
 
-export const SmartRefrigerator = () => {
+export const SmartRefrigerator = ({ onDeepDive }: { onDeepDive?: () => void }) => {
   const [selectedCompartment, setSelectedCompartment] = useState('All');
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -42,7 +42,7 @@ export const SmartRefrigerator = () => {
   };
 
   return (
-    <Card className="bg-gradient-card border-border/50 shadow-glow transition-all duration-300 hover:shadow-neon">
+    <Card className="bg-gradient-card border-border/50 shadow-glow transition-all duration-300 hover:shadow-neon cursor-pointer group" onClick={onDeepDive}>
       <div className="p-6">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -51,8 +51,8 @@ export const SmartRefrigerator = () => {
               <Snowflake className="h-6 w-6 text-neon-cyan" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-foreground">Smart Refrigerator</h2>
-              <p className="text-muted-foreground">Real-time inventory tracking</p>
+              <h2 className="text-2xl font-bold text-foreground group-hover:text-neon-cyan transition-colors">Smart Refrigerator</h2>
+              <p className="text-muted-foreground group-hover:text-neon-cyan/70 transition-colors">Real-time inventory tracking • Click to explore</p>
             </div>
           </div>
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
