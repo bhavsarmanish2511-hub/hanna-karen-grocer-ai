@@ -2,41 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Futuristic 2035 Design System - Deep Blues, Purples, Metallics, Neon */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Futuristic Palette */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 224 71% 6%;
+    --card-foreground: 213 31% 91%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 224 71% 6%;
+    --popover-foreground: 213 31% 91%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 263 70% 50%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 215 25% 27%;
+    --secondary-foreground: 213 31% 91%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 25% 15%;
+    --muted-foreground: 217 10% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 195 100% 50%;
+    --accent-foreground: 224 71% 4%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 25% 20%;
+    --input: 215 25% 15%;
+    --ring: 263 70% 50%;
 
-    --radius: 0.5rem;
+    /* Futuristic Color Extensions */
+    --neon-cyan: 195 100% 50%;
+    --neon-purple: 263 70% 50%;
+    --neon-pink: 320 100% 70%;
+    --metallic-silver: 210 10% 70%;
+    --metallic-gold: 45 100% 70%;
+    --deep-space: 224 71% 2%;
+    --panel-glow: 263 70% 50%;
+    
+    /* Status Colors */
+    --fresh: 120 100% 40%;
+    --expiring: 45 100% 60%;
+    --expired: 0 84% 60%;
+    --low-stock: 30 100% 60%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(195 100% 50%));
+    --gradient-card: linear-gradient(145deg, hsl(224 71% 6%), hsl(215 25% 15%));
+    --gradient-metallic: linear-gradient(135deg, hsl(210 10% 70%), hsl(45 100% 70%));
+    --gradient-neon: linear-gradient(90deg, hsl(195 100% 50%), hsl(263 70% 50%), hsl(320 100% 70%));
+    
+    /* Shadows & Glows */
+    --shadow-neon: 0 0 20px hsl(var(--neon-cyan) / 0.5);
+    --shadow-purple: 0 0 20px hsl(var(--neon-purple) / 0.3);
+    --shadow-card: 0 8px 32px hsl(var(--deep-space) / 0.8);
+    --glow-panel: 0 0 40px hsl(var(--panel-glow) / 0.2);
+    
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: box-shadow 0.3s ease-in-out;
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
