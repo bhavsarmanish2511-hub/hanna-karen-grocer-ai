@@ -5,12 +5,6 @@ import { Button } from '@/components/ui/button';
 import { 
   Search, 
   Package, 
-  Carrot, 
-  Coffee, 
-  Utensils, 
-  Archive,
-  ChevronRight,
-  ChevronDown,
   Layers,
   Warehouse,
   MapPin
@@ -23,101 +17,66 @@ interface InventoryItem {
   freshness?: 'fresh' | 'expiring' | 'expired';
   stockLevel?: 'high' | 'medium' | 'low' | 'empty';
   location: string;
-  shelf: string;
-  position: string;
   category: string;
+  source: 'refrigerator' | 'kitchen';
 }
 
-interface InventoryShelf {
-  id: string;
-  name: string;
-  location: string;
-  zone: string;
-  items: InventoryItem[];
-  icon: any;
-  color: string;
-}
-
-const inventoryShelves: InventoryShelf[] = [
-  {
-    id: 'fridge-main',
-    name: 'Refrigerator Main',
-    location: 'Kitchen Appliance',
-    zone: 'Cold Storage',
-    icon: Package,
-    color: 'text-neon-cyan',
-    items: [
-      { id: '1', name: 'Organic Milk', quantity: '1.2L', freshness: 'fresh', location: 'Fridge Main Shelf', shelf: 'Main Shelf', position: 'Front Left', category: 'Dairy' },
-      { id: '2', name: 'Greek Yogurt', quantity: '500g', freshness: 'fresh', location: 'Fridge Main Shelf', shelf: 'Main Shelf', position: 'Back Center', category: 'Dairy' },
-    ]
-  },
-  {
-    id: 'fridge-crisper',
-    name: 'Vegetable Crisper',
-    location: 'Refrigerator Bottom',
-    zone: 'Fresh Produce',
-    icon: Carrot,
-    color: 'text-status-fresh',
-    items: [
-      { id: '3', name: 'Baby Carrots', quantity: '300g', freshness: 'expiring', location: 'Fridge Crisper', shelf: 'Crisper Drawer', position: 'Left Side', category: 'Vegetables' },
-      { id: '4', name: 'Fresh Spinach', quantity: '200g', freshness: 'fresh', location: 'Fridge Crisper', shelf: 'Crisper Drawer', position: 'Right Side', category: 'Leafy Greens' },
-      { id: '5', name: 'Cherry Tomatoes', quantity: '250g', freshness: 'fresh', location: 'Fridge Crisper', shelf: 'Crisper Drawer', position: 'Center', category: 'Vegetables' },
-    ]
-  },
-  {
-    id: 'pantry-upper',
-    name: 'Upper Pantry Shelf',
-    location: 'Pantry Cabinet',
-    zone: 'Dry Storage',
-    icon: Archive,
-    color: 'text-neon-purple',
-    items: [
-      { id: '6', name: 'Basmati Rice', quantity: '2.5kg', stockLevel: 'high', location: 'Pantry Upper', shelf: 'Top Shelf', position: 'Left Corner', category: 'Grains' },
-      { id: '7', name: 'Whole Wheat Flour', quantity: '1kg', stockLevel: 'medium', location: 'Pantry Upper', shelf: 'Top Shelf', position: 'Center', category: 'Baking' },
-      { id: '8', name: 'Olive Oil', quantity: '250ml', stockLevel: 'low', location: 'Pantry Upper', shelf: 'Top Shelf', position: 'Right Side', category: 'Oils' },
-    ]
-  },
-  {
-    id: 'pantry-middle',
-    name: 'Middle Pantry Shelf',
-    location: 'Pantry Cabinet',
-    zone: 'Snacks & Breakfast',
-    icon: Package,
-    color: 'text-neon-pink',
-    items: [
-      { id: '9', name: 'Kids Cereal (Ron)', quantity: '1 box', stockLevel: 'medium', location: 'Pantry Middle', shelf: 'Middle Shelf', position: 'Front Center', category: 'Breakfast' },
-      { id: '10', name: 'Granola Bars', quantity: '8 bars', stockLevel: 'medium', location: 'Pantry Middle', shelf: 'Middle Shelf', position: 'Back Left', category: 'Snacks' },
-      { id: '11', name: 'Honey', quantity: '50g', stockLevel: 'empty', location: 'Pantry Middle', shelf: 'Middle Shelf', position: 'Right Corner', category: 'Sweeteners' },
-    ]
-  },
-  {
-    id: 'beverage-station',
-    name: 'Beverage Station',
-    location: 'Counter Area',
-    zone: 'Drinks & Coffee',
-    icon: Coffee,
-    color: 'text-status-expiring',
-    items: [
-      { id: '12', name: 'Ground Coffee', quantity: '200g', stockLevel: 'low', location: 'Beverage Station', shelf: 'Coffee Shelf', position: 'Main Position', category: 'Coffee' },
-      { id: '13', name: 'Green Tea', quantity: '50 bags', stockLevel: 'high', location: 'Beverage Station', shelf: 'Tea Shelf', position: 'Side Compartment', category: 'Tea' },
-      { id: '14', name: 'Apple Juice (Ron)', quantity: '750ml', freshness: 'fresh', location: 'Fridge Door', shelf: 'Door Shelf', position: 'Top Slot', category: 'Juice' },
-    ]
-  },
-  {
-    id: 'storage-cabinet',
-    name: 'Storage Cabinet',
-    location: 'Utility Area',
-    zone: 'Household Items',
-    icon: Warehouse,
-    color: 'text-muted-foreground',
-    items: [
-      { id: '15', name: 'Paper Towels', quantity: '4 rolls', stockLevel: 'high', location: 'Storage Cabinet', shelf: 'Upper Cabinet', position: 'Top Shelf', category: 'Cleaning' },
-      { id: '16', name: 'Dish Soap', quantity: '1 bottle', stockLevel: 'medium', location: 'Under Sink', shelf: 'Under Sink', position: 'Left Side', category: 'Cleaning' },
-    ]
-  }
+// Combined items from Smart Refrigerator and Smart Kitchen
+const allInventoryItems: InventoryItem[] = [
+  // From Refrigerator
+  { id: '1', name: 'Milk', quantity: '1.2L', freshness: 'fresh', location: 'Main Shelf - Front', category: 'Dairy', source: 'refrigerator' },
+  { id: '2', name: 'Greek Yogurt', quantity: '500g', freshness: 'fresh', location: 'Main Shelf - Back', category: 'Dairy', source: 'refrigerator' },
+  { id: '3', name: 'Eggs', quantity: '12 count', freshness: 'fresh', location: 'Main Shelf - Side', category: 'Dairy', source: 'refrigerator' },
+  { id: '4', name: 'Butter', quantity: '250g', freshness: 'fresh', location: 'Main Shelf - Corner', category: 'Dairy', source: 'refrigerator' },
+  { id: '5', name: 'Cheese', quantity: '400g', freshness: 'fresh', location: 'Main Shelf - Center', category: 'Dairy', source: 'refrigerator' },
+  { id: '6', name: 'Onions', quantity: '800g', freshness: 'fresh', location: 'Crisper - Left Side', category: 'Vegetables', source: 'refrigerator' },
+  { id: '7', name: 'Avocado', quantity: '3 pieces', freshness: 'fresh', location: 'Crisper - Center', category: 'Vegetables', source: 'refrigerator' },
+  { id: '8', name: 'Tomatoes', quantity: '500g', freshness: 'fresh', location: 'Crisper - Right Side', category: 'Vegetables', source: 'refrigerator' },
+  { id: '9', name: 'Lettuce', quantity: '1 head', freshness: 'fresh', location: 'Crisper - Back Left', category: 'Vegetables', source: 'refrigerator' },
+  { id: '10', name: 'Spinach', quantity: '200g', freshness: 'fresh', location: 'Crisper - Back Right', category: 'Vegetables', source: 'refrigerator' },
+  { id: '11', name: 'Bell Peppers', quantity: '3 pieces', freshness: 'fresh', location: 'Crisper - Front', category: 'Vegetables', source: 'refrigerator' },
+  { id: '12', name: 'Broccoli', quantity: '1 head', freshness: 'fresh', location: 'Crisper - Side', category: 'Vegetables', source: 'refrigerator' },
+  { id: '13', name: 'Carrots', quantity: '500g', freshness: 'expiring', location: 'Crisper - Bottom', category: 'Vegetables', source: 'refrigerator' },
+  { id: '14', name: 'Nutrient-Rich Apple Juice', quantity: '1L', freshness: 'fresh', location: 'Door - Top Shelf', category: 'Beverages', source: 'refrigerator' },
+  { id: '15', name: 'Orange Juice', quantity: '750ml', freshness: 'fresh', location: 'Door - Middle Shelf', category: 'Beverages', source: 'refrigerator' },
+  { id: '16', name: 'Juice Boxes', quantity: '6 pack', freshness: 'fresh', location: 'Door - Bottom Shelf', category: 'Beverages', source: 'refrigerator' },
+  { id: '17', name: 'Sparkling Water', quantity: '1.5L', freshness: 'fresh', location: 'Door - Side', category: 'Beverages', source: 'refrigerator' },
+  { id: '18', name: 'Chicken Breast', quantity: '1kg', freshness: 'fresh', location: 'Freezer - Main Tray', category: 'Meat', source: 'refrigerator' },
+  { id: '19', name: 'Organic Apples', quantity: '1kg', freshness: 'fresh', location: 'Freezer - Fruit Section', category: 'Fruits', source: 'refrigerator' },
+  { id: '20', name: 'Strawberries', quantity: '500g', freshness: 'fresh', location: 'Freezer - Berry Section', category: 'Fruits', source: 'refrigerator' },
+  { id: '21', name: 'Fresh Herbs', quantity: '100g', freshness: 'fresh', location: 'Freezer - Herb Tray', category: 'Herbs', source: 'refrigerator' },
+  
+  // From Kitchen
+  { id: '22', name: 'Basmati Rice', quantity: '2.5kg', stockLevel: 'low', location: 'Pantry Shelf 1', category: 'Grains', source: 'kitchen' },
+  { id: '23', name: 'Whole Wheat Flour', quantity: '1kg', stockLevel: 'medium', location: 'Pantry Shelf 1', category: 'Baking', source: 'kitchen' },
+  { id: '24', name: 'Pasta', quantity: '500g', stockLevel: 'high', location: 'Pantry Shelf 1', category: 'Grains', source: 'kitchen' },
+  { id: '25', name: 'Lentils', quantity: '800g', stockLevel: 'medium', location: 'Pantry Shelf 1', category: 'Legumes', source: 'kitchen' },
+  { id: '26', name: 'Sustainable Rice Pack', quantity: '1kg', stockLevel: 'high', location: 'Pantry Shelf 1', category: 'Grains', source: 'kitchen' },
+  { id: '27', name: 'Al Breakfast Cereals', quantity: '2 boxes', stockLevel: 'medium', location: 'Pantry Shelf 2', category: 'Breakfast', source: 'kitchen' },
+  { id: '28', name: 'Oats', quantity: '1kg', stockLevel: 'high', location: 'Pantry Shelf 2', category: 'Breakfast', source: 'kitchen' },
+  { id: '29', name: 'Bread', quantity: '2 loaves', stockLevel: 'medium', location: 'Pantry Shelf 2', category: 'Bakery', source: 'kitchen' },
+  { id: '30', name: 'Sugar', quantity: '1kg', stockLevel: 'high', location: 'Pantry Shelf 2', category: 'Sweeteners', source: 'kitchen' },
+  { id: '31', name: 'Salt', quantity: '500g', stockLevel: 'high', location: 'Pantry Shelf 2', category: 'Seasonings', source: 'kitchen' },
+  { id: '32', name: 'Honey', quantity: '50g', stockLevel: 'empty', location: 'Spice Rack', category: 'Sweeteners', source: 'kitchen' },
+  { id: '33', name: 'Spices', quantity: '12 bottles', stockLevel: 'medium', location: 'Spice Rack', category: 'Seasonings', source: 'kitchen' },
+  { id: '34', name: 'Sauces', quantity: '6 bottles', stockLevel: 'medium', location: 'Spice Rack', category: 'Condiments', source: 'kitchen' },
+  { id: '35', name: 'Baking Powder', quantity: '200g', stockLevel: 'low', location: 'Spice Rack', category: 'Baking', source: 'kitchen' },
+  { id: '36', name: 'Coffee', quantity: '200g', stockLevel: 'low', location: 'Beverage Station', category: 'Beverages', source: 'kitchen' },
+  { id: '37', name: 'Tea', quantity: '40 bags', stockLevel: 'medium', location: 'Beverage Station', category: 'Beverages', source: 'kitchen' },
+  { id: '38', name: 'Green Tea', quantity: '30 bags', stockLevel: 'high', location: 'Beverage Station', category: 'Beverages', source: 'kitchen' },
+  { id: '39', name: 'Kids Snacks', quantity: '8 packs', stockLevel: 'medium', location: 'Snack Cabinet', category: 'Snacks', source: 'kitchen' },
+  { id: '40', name: 'Freeze-Dried Banana Snacks', quantity: '4 packs', stockLevel: 'low', location: 'Snack Cabinet', category: 'Snacks', source: 'kitchen' },
+  { id: '41', name: 'Probiotic Yogurt Cubes', quantity: '6 packs', stockLevel: 'medium', location: 'Snack Cabinet', category: 'Snacks', source: 'kitchen' },
+  { id: '42', name: 'Dish Soap', quantity: '1 bottle', stockLevel: 'low', location: 'Cleaning Cabinet', category: 'Cleaning', source: 'kitchen' },
+  { id: '43', name: 'Paper Towels', quantity: '4 rolls', stockLevel: 'high', location: 'Cleaning Cabinet', category: 'Cleaning', source: 'kitchen' },
+  { id: '44', name: 'Laundry Detergent', quantity: '1 bottle', stockLevel: 'medium', location: 'Cleaning Cabinet', category: 'Cleaning', source: 'kitchen' },
+  { id: '45', name: 'Smart Cleaning Pods', quantity: '12 pods', stockLevel: 'high', location: 'Cleaning Cabinet', category: 'Cleaning', source: 'kitchen' },
+  { id: '46', name: 'Plasma Cleaning Spray', quantity: '2 bottles', stockLevel: 'medium', location: 'Cleaning Cabinet', category: 'Cleaning', source: 'kitchen' },
+  { id: '47', name: 'Organic Baby Powder', quantity: '1 container', stockLevel: 'low', location: 'Cleaning Cabinet', category: 'Baby Care', source: 'kitchen' },
+  { id: '48', name: 'Premium Organic Tofu', quantity: '400g', stockLevel: 'low', location: 'Specialty Items', category: 'Plant Protein', source: 'kitchen' },
 ];
 
-const zones = ['All Zones', 'Cold Storage', 'Fresh Produce', 'Dry Storage', 'Snacks & Breakfast', 'Drinks & Coffee', 'Household Items'];
+const categories = ['All Categories', 'Vegetables', 'Dairy', 'Beverages', 'Grains', 'Meat', 'Fruits', 'Herbs', 'Baking', 'Breakfast', 'Snacks', 'Cleaning', 'Baby Care', 'Plant Protein'];
 
 interface InventoryExplorerModalProps {
   isOpen: boolean;
@@ -125,8 +84,7 @@ interface InventoryExplorerModalProps {
 }
 
 export const InventoryExplorerModal = ({ isOpen, onClose }: InventoryExplorerModalProps) => {
-  const [selectedShelf, setSelectedShelf] = useState<string | null>(null);
-  const [selectedZone, setSelectedZone] = useState('All Zones');
+  const [selectedCategory, setSelectedCategory] = useState('All Categories');
   const [searchTerm, setSearchTerm] = useState('');
 
   const getFreshnessColor = (freshness?: string) => {
@@ -148,15 +106,14 @@ export const InventoryExplorerModal = ({ isOpen, onClose }: InventoryExplorerMod
     }
   };
 
-  const filteredShelves = inventoryShelves.filter(shelf => {
-    const matchesZone = selectedZone === 'All Zones' || shelf.zone === selectedZone;
-    const matchesSearch = shelf.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         shelf.items.some(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesZone && matchesSearch;
+  const filteredItems = allInventoryItems.filter(item => {
+    const matchesCategory = selectedCategory === 'All Categories' || item.category === selectedCategory;
+    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         item.location.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
-  const selectedShelfData = inventoryShelves.find(s => s.id === selectedShelf);
-  const totalItems = inventoryShelves.reduce((sum, shelf) => sum + shelf.items.length, 0);
+  const totalItems = allInventoryItems.length;
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -174,218 +131,150 @@ export const InventoryExplorerModal = ({ isOpen, onClose }: InventoryExplorerMod
         </DialogHeader>
 
         <div className="flex-1 overflow-hidden">
-          {!selectedShelf ? (
-            <div className="h-full flex flex-col">
-              {/* Search and Filters */}
-              <div className="mb-6 space-y-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <input
-                    type="text"
-                    placeholder="Search shelves and items..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 bg-card/50 border border-border/50 rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-neon-cyan/50 transition-colors"
-                  />
-                </div>
-
-                <div className="flex gap-2 overflow-x-auto pb-2">
-                  {zones.map((zone) => (
-                    <Badge
-                      key={zone}
-                      variant={selectedZone === zone ? "default" : "secondary"}
-                      className={`cursor-pointer whitespace-nowrap transition-all duration-200 ${
-                        selectedZone === zone 
-                          ? 'bg-primary text-primary-foreground shadow-neon' 
-                          : 'hover:bg-secondary/80'
-                      }`}
-                      onClick={() => setSelectedZone(zone)}
-                    >
-                      {zone}
-                    </Badge>
-                  ))}
-                </div>
+          <div className="h-full flex flex-col">
+            {/* Search and Filters */}
+            <div className="mb-6 space-y-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search all items..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 bg-card/50 border border-border/50 rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:border-neon-cyan/50 transition-colors"
+                />
               </div>
 
-              {/* Shelves Overview */}
-              <div className="flex-1 overflow-auto">
-                <div className="mb-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Warehouse className="h-5 w-5 text-neon-cyan" />
-                    <span className="text-lg font-semibold text-foreground">Smart Storage Organization</span>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {filteredShelves.map((shelf) => {
-                      const IconComponent = shelf.icon;
-                      const lowStockItems = shelf.items.filter(item => 
-                        item.stockLevel === 'low' || item.stockLevel === 'empty' || item.freshness === 'expiring'
-                      ).length;
-                      
-                      return (
-                        <div
-                          key={shelf.id}
-                          onClick={() => setSelectedShelf(shelf.id)}
-                          className="group cursor-pointer p-6 rounded-xl bg-card/30 border border-border/30 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-neon/50 hover:scale-105"
-                        >
-                          <div className="space-y-4">
-                            <div className="flex items-start justify-between">
-                              <div className={`p-3 rounded-2xl bg-card/50 group-hover:bg-neon-cyan/10 transition-all duration-300`}>
-                                <IconComponent className={`h-6 w-6 ${shelf.color} group-hover:text-neon-cyan`} />
-                              </div>
-                              <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-neon-cyan transition-colors" />
-                            </div>
-                            
-                            <div>
-                              <h3 className="font-bold text-foreground group-hover:text-neon-cyan transition-colors mb-1">
-                                {shelf.name}
-                              </h3>
-                              <div className="space-y-1">
-                                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                                  <MapPin className="h-3 w-3" />
-                                  {shelf.location}
-                                </div>
-                                <Badge variant="outline" className="text-xs">
-                                  {shelf.zone}
-                                </Badge>
-                              </div>
-                            </div>
-
-                            <div className="flex items-center justify-between">
-                              <Badge variant="secondary" className="text-xs">
-                                {shelf.items.length} items
-                              </Badge>
-                              {lowStockItems > 0 && (
-                                <Badge variant="outline" className="text-xs bg-status-expiring/10 text-status-expiring border-status-expiring/30">
-                                  {lowStockItems} need attention
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Quick Items Overview */}
-                <div className="border-t border-border/30 pt-6">
-                  <h3 className="text-lg font-semibold text-foreground mb-4">Items Requiring Attention</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                    {inventoryShelves.flatMap(shelf => shelf.items)
-                      .filter(item => item.stockLevel === 'low' || item.stockLevel === 'empty' || item.freshness === 'expiring')
-                      .slice(0, 8)
-                      .map((item) => (
-                        <div
-                          key={item.id}
-                          className="p-3 rounded-lg bg-card/50 border border-border/30 hover:border-neon-cyan/50 transition-all duration-300"
-                        >
-                          <div className="space-y-2">
-                            <h4 className="font-medium text-foreground text-sm">{item.name}</h4>
-                            <div className="text-xs text-muted-foreground">{item.shelf} - {item.position}</div>
-                            <div className="flex items-center justify-between">
-                              <span className="font-mono text-xs text-foreground">{item.quantity}</span>
-                              {item.freshness && (
-                                <div className={`px-2 py-0.5 rounded-full text-xs font-medium ${getFreshnessColor(item.freshness)}`}>
-                                  {item.freshness.toUpperCase()}
-                                </div>
-                              )}
-                              {item.stockLevel && !item.freshness && (
-                                <div className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStockColor(item.stockLevel)}`}>
-                                  {item.stockLevel.toUpperCase()}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                </div>
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {categories.map((category) => (
+                  <Badge
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "secondary"}
+                    className={`cursor-pointer whitespace-nowrap transition-all duration-200 ${
+                      selectedCategory === category 
+                        ? 'bg-primary text-primary-foreground shadow-neon' 
+                        : 'hover:bg-secondary/80'
+                    }`}
+                    onClick={() => setSelectedCategory(category)}
+                  >
+                    {category}
+                  </Badge>
+                ))}
               </div>
             </div>
-          ) : (
-            /* Shelf Detail View */
-            <div className="h-full flex flex-col">
-              <div className="flex items-center gap-2 mb-6">
-                <Button variant="ghost" onClick={() => setSelectedShelf(null)} className="text-neon-cyan">
-                  ← Back to Overview
-                </Button>
-              </div>
 
-              {selectedShelfData && (
-                <div className="flex-1 overflow-auto">
-                  <div className="flex items-center gap-3 mb-6">
-                    <selectedShelfData.icon className={`h-8 w-8 ${selectedShelfData.color}`} />
-                    <div>
-                      <h2 className="text-2xl font-bold text-foreground">{selectedShelfData.name}</h2>
-                      <p className="text-muted-foreground">{selectedShelfData.location} • {selectedShelfData.zone}</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {selectedShelfData.items.map((item) => (
-                      <div
-                        key={item.id}
-                        className="p-6 rounded-xl bg-card/50 border border-border/30 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-neon/50"
-                      >
-                        <div className="space-y-4">
-                          <div className="flex items-start justify-between">
-                            <h3 className="text-xl font-bold text-foreground">{item.name}</h3>
-                            <div className="flex flex-col gap-2">
-                              {item.freshness && (
-                                <div className={`px-3 py-1 rounded-full text-xs font-medium ${getFreshnessColor(item.freshness)}`}>
-                                  {item.freshness.toUpperCase()}
-                                </div>
-                              )}
-                              {item.stockLevel && (
-                                <div className={`px-3 py-1 rounded-full text-xs font-medium ${getStockColor(item.stockLevel)}`}>
-                                  {item.stockLevel.toUpperCase()}
-                                </div>
-                              )}
-                            </div>
+            {/* All Items Grid */}
+            <div className="flex-1 overflow-auto">
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Warehouse className="h-5 w-5 text-neon-cyan" />
+                  <span className="text-lg font-semibold text-foreground">Complete Inventory Overview</span>
+                  <Badge variant="outline" className="ml-2">
+                    {filteredItems.length} of {totalItems} items
+                  </Badge>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {filteredItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="p-4 rounded-xl bg-card/30 border border-border/30 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-neon/50"
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-start justify-between">
+                          <h4 className="font-semibold text-foreground">{item.name}</h4>
+                          <div className="flex flex-col gap-1">
+                            {item.freshness && (
+                              <div className={`px-2 py-0.5 rounded-full text-xs font-medium ${getFreshnessColor(item.freshness)}`}>
+                                {item.freshness.charAt(0).toUpperCase() + item.freshness.slice(1)}
+                              </div>
+                            )}
+                            {item.stockLevel && (
+                              <div className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStockColor(item.stockLevel)}`}>
+                                {item.stockLevel.charAt(0).toUpperCase() + item.stockLevel.slice(1)}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Quantity</span>
+                            <span className="font-mono text-sm text-foreground">{item.quantity}</span>
                           </div>
                           
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                              <span className="text-muted-foreground">Quantity</span>
-                              <div className="font-mono text-foreground text-lg">{item.quantity}</div>
-                            </div>
-                            <div>
-                              <span className="text-muted-foreground">Position</span>
-                              <div className="text-foreground">{item.position}</div>
-                            </div>
-                            <div>
-                              <span className="text-muted-foreground">Category</span>
-                              <Badge variant="outline">{item.category}</Badge>
-                            </div>
-                            <div>
-                              <span className="text-muted-foreground">Exact Location</span>
-                              <div className="text-foreground text-xs">{item.location}</div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Category</span>
+                            <Badge variant="outline" className="text-xs">{item.category}</Badge>
+                          </div>
+                          
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-muted-foreground">Source</span>
+                            <Badge 
+                              variant="secondary" 
+                              className={`text-xs ${
+                                item.source === 'refrigerator' ? 'bg-neon-cyan/10 text-neon-cyan' : 'bg-neon-purple/10 text-neon-purple'
+                              }`}
+                            >
+                              {item.source === 'refrigerator' ? 'Fridge' : 'Kitchen'}
+                            </Badge>
+                          </div>
+                          
+                          <div className="pt-2 border-t border-border/30">
+                            <div className="flex items-center gap-1">
+                              <MapPin className="h-3 w-3 text-muted-foreground" />
+                              <span className="text-xs text-muted-foreground">{item.location}</span>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
 
-                          {item.stockLevel && (
-                            <div className="p-3 rounded-lg bg-muted/20">
-                              <div className="text-sm text-muted-foreground mb-2">Stock Level</div>
-                              <div className="w-full bg-muted/30 rounded-full h-2">
-                                <div 
-                                  className={`h-2 rounded-full transition-all duration-300 ${
-                                    item.stockLevel === 'high' ? 'w-full bg-status-fresh' :
-                                    item.stockLevel === 'medium' ? 'w-2/3 bg-neon-cyan' :
-                                    item.stockLevel === 'low' ? 'w-1/3 bg-status-expiring' :
-                                    'w-0 bg-status-expired'
-                                  }`}
-                                />
+                {filteredItems.length === 0 && (
+                  <div className="text-center py-12">
+                    <Package className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-muted-foreground">No items found matching your search criteria.</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Items Requiring Attention */}
+              <div className="border-t border-border/30 pt-6">
+                <h3 className="text-lg font-semibold text-foreground mb-4">Items Requiring Attention</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {allInventoryItems
+                    .filter(item => item.stockLevel === 'low' || item.stockLevel === 'empty' || item.freshness === 'expiring')
+                    .slice(0, 8)
+                    .map((item) => (
+                      <div
+                        key={item.id}
+                        className="p-3 rounded-lg bg-card/50 border border-border/30 hover:border-neon-cyan/50 transition-all duration-300"
+                      >
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-foreground text-sm">{item.name}</h4>
+                          <div className="text-xs text-muted-foreground">{item.location}</div>
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-xs text-foreground">{item.quantity}</span>
+                            {item.freshness && (
+                              <div className={`px-2 py-0.5 rounded-full text-xs font-medium ${getFreshnessColor(item.freshness)}`}>
+                                {item.freshness.toUpperCase()}
                               </div>
-                            </div>
-                          )}
+                            )}
+                            {item.stockLevel && !item.freshness && (
+                              <div className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStockColor(item.stockLevel)}`}>
+                                {item.stockLevel.toUpperCase()}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     ))}
-                  </div>
                 </div>
-              )}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>

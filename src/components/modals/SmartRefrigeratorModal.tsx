@@ -32,8 +32,11 @@ const fridgeCompartments: FridgeCompartment[] = [
     icon: Layers3,
     color: 'text-neon-cyan',
     items: [
-      { id: '1', name: 'Organic Milk', quantity: '1.2L', freshness: 'fresh', compartment: 'Dairy', expiryDays: 5, temperature: '4°C', location: 'Main Shelf - Front' },
+      { id: '1', name: 'Milk', quantity: '1.2L', freshness: 'fresh', compartment: 'Dairy', expiryDays: 5, temperature: '4°C', location: 'Main Shelf - Front' },
       { id: '2', name: 'Greek Yogurt', quantity: '500g', freshness: 'fresh', compartment: 'Dairy', expiryDays: 7, location: 'Main Shelf - Back' },
+      { id: '3', name: 'Eggs', quantity: '12 count', freshness: 'fresh', compartment: 'Dairy', expiryDays: 14, location: 'Main Shelf - Side' },
+      { id: '4', name: 'Butter', quantity: '250g', freshness: 'fresh', compartment: 'Dairy', expiryDays: 21, location: 'Main Shelf - Corner' },
+      { id: '5', name: 'Cheese', quantity: '400g', freshness: 'fresh', compartment: 'Dairy', expiryDays: 10, location: 'Main Shelf - Center' },
     ]
   },
   {
@@ -43,8 +46,14 @@ const fridgeCompartments: FridgeCompartment[] = [
     icon: Package,
     color: 'text-status-fresh',
     items: [
-      { id: '3', name: 'Baby Carrots', quantity: '300g', freshness: 'expiring', compartment: 'Vegetables', expiryDays: 2, location: 'Crisper - Left Side' },
-      { id: '8', name: 'Fresh Spinach', quantity: '200g', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 4, location: 'Crisper - Right Side' },
+      { id: '6', name: 'Onions', quantity: '800g', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 14, location: 'Crisper - Left Side' },
+      { id: '7', name: 'Avocado', quantity: '3 pieces', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 3, location: 'Crisper - Center' },
+      { id: '8', name: 'Tomatoes', quantity: '500g', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 5, location: 'Crisper - Right Side' },
+      { id: '9', name: 'Lettuce', quantity: '1 head', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 7, location: 'Crisper - Back Left' },
+      { id: '10', name: 'Spinach', quantity: '200g', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 4, location: 'Crisper - Back Right' },
+      { id: '11', name: 'Bell Peppers', quantity: '3 pieces', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 6, location: 'Crisper - Front' },
+      { id: '12', name: 'Broccoli', quantity: '1 head', freshness: 'fresh', compartment: 'Vegetables', expiryDays: 5, location: 'Crisper - Side' },
+      { id: '13', name: 'Carrots', quantity: '500g', freshness: 'expiring', compartment: 'Vegetables', expiryDays: 2, location: 'Crisper - Bottom' },
     ]
   },
   {
@@ -54,8 +63,10 @@ const fridgeCompartments: FridgeCompartment[] = [
     icon: Droplets,
     color: 'text-neon-purple',
     items: [
-      { id: '4', name: 'Apple Juice (Ron)', quantity: '750ml', freshness: 'fresh', compartment: 'Beverages', expiryDays: 10, location: 'Door - Top Shelf' },
-      { id: '9', name: 'Condiment Bottle', quantity: '300ml', freshness: 'fresh', compartment: 'Condiments', expiryDays: 30, location: 'Door - Bottom Shelf' },
+      { id: '14', name: 'Nutrient-Rich Apple Juice', quantity: '1L', freshness: 'fresh', compartment: 'Beverages', expiryDays: 10, location: 'Door - Top Shelf' },
+      { id: '15', name: 'Orange Juice', quantity: '750ml', freshness: 'fresh', compartment: 'Beverages', expiryDays: 8, location: 'Door - Middle Shelf' },
+      { id: '16', name: 'Juice Boxes', quantity: '6 pack', freshness: 'fresh', compartment: 'Beverages', expiryDays: 30, location: 'Door - Bottom Shelf' },
+      { id: '17', name: 'Sparkling Water', quantity: '1.5L', freshness: 'fresh', compartment: 'Beverages', expiryDays: 365, location: 'Door - Side' },
     ]
   },
   {
@@ -65,8 +76,10 @@ const fridgeCompartments: FridgeCompartment[] = [
     icon: Snowflake,
     color: 'text-neon-cyan',
     items: [
-      { id: '10', name: 'Frozen Berries', quantity: '500g', freshness: 'fresh', compartment: 'Frozen', expiryDays: 90, location: 'Freezer - Top Tray' },
-      { id: '11', name: 'Ice Cream (Ron)', quantity: '1L', freshness: 'fresh', compartment: 'Frozen Treats', expiryDays: 60, location: 'Freezer - Bottom Tray' },
+      { id: '18', name: 'Chicken Breast', quantity: '1kg', freshness: 'fresh', compartment: 'Meat', expiryDays: 90, location: 'Freezer - Main Tray' },
+      { id: '19', name: 'Organic Apples', quantity: '1kg', freshness: 'fresh', compartment: 'Fruits', expiryDays: 30, location: 'Freezer - Fruit Section' },
+      { id: '20', name: 'Strawberries', quantity: '500g', freshness: 'fresh', compartment: 'Fruits', expiryDays: 30, location: 'Freezer - Berry Section' },
+      { id: '21', name: 'Fresh Herbs', quantity: '100g', freshness: 'fresh', compartment: 'Herbs', expiryDays: 60, location: 'Freezer - Herb Tray' },
     ]
   }
 ];

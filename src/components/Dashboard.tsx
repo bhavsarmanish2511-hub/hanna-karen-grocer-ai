@@ -4,6 +4,7 @@ import { SmartKitchen } from './SmartKitchen';
 import { GroceryList } from './GroceryList';
 import { PurchaseHistory } from './PurchaseHistory';
 import { InventoryExplorer } from './InventoryExplorer';
+import { CartOverview } from './CartOverview';
 import { SmartRefrigeratorModal } from './modals/SmartRefrigeratorModal';
 import { SmartKitchenModal } from './modals/SmartKitchenModal';
 import { InventoryExplorerModal } from './modals/InventoryExplorerModal';
@@ -39,8 +40,8 @@ export const Dashboard = () => {
         </header>
 
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          {/* Smart Refrigerator - Takes full width on mobile, 2/3 on large screens */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+          {/* Smart Refrigerator - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
             <SmartRefrigerator onDeepDive={() => setFridgeModalOpen(true)} />
           </div>
@@ -48,6 +49,11 @@ export const Dashboard = () => {
           {/* AI Grocery List */}
           <div className="lg:col-span-1">
             <GroceryList />
+          </div>
+
+          {/* Smart Cart */}
+          <div className="lg:col-span-1">
+            <CartOverview />
           </div>
         </div>
 

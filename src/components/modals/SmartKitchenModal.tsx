@@ -33,9 +33,11 @@ const kitchenShelves: KitchenShelf[] = [
     icon: Archive,
     color: 'text-neon-purple',
     items: [
-      { id: '1', name: 'Basmati Rice', quantity: '2.5kg', location: 'Pantry Shelf 1', stockLevel: 'high', category: 'Grains', shelf: 'Pantry Shelf 1', position: 'Left Corner' },
+      { id: '1', name: 'Basmati Rice', quantity: '2.5kg', location: 'Pantry Shelf 1', stockLevel: 'low', category: 'Grains', shelf: 'Pantry Shelf 1', position: 'Left Corner' },
       { id: '2', name: 'Whole Wheat Flour', quantity: '1kg', location: 'Pantry Shelf 1', stockLevel: 'medium', category: 'Baking', shelf: 'Pantry Shelf 1', position: 'Center' },
-      { id: '3', name: 'Soy Sauce', quantity: '500ml', location: 'Pantry Shelf 1', stockLevel: 'high', category: 'Condiments', shelf: 'Pantry Shelf 1', position: 'Right Side' },
+      { id: '3', name: 'Pasta', quantity: '500g', location: 'Pantry Shelf 1', stockLevel: 'high', category: 'Grains', shelf: 'Pantry Shelf 1', position: 'Right Side' },
+      { id: '4', name: 'Lentils', quantity: '800g', location: 'Pantry Shelf 1', stockLevel: 'medium', category: 'Legumes', shelf: 'Pantry Shelf 1', position: 'Back Left' },
+      { id: '5', name: 'Sustainable Rice Pack', quantity: '1kg', location: 'Pantry Shelf 1', stockLevel: 'high', category: 'Grains', shelf: 'Pantry Shelf 1', position: 'Back Right' },
     ]
   },
   {
@@ -45,31 +47,73 @@ const kitchenShelves: KitchenShelf[] = [
     icon: Package,
     color: 'text-neon-cyan',
     items: [
-      { id: '4', name: 'Kids Cereal (Ron)', quantity: '1 box', location: 'Pantry Shelf 2', stockLevel: 'medium', category: 'Breakfast', shelf: 'Pantry Shelf 2', position: 'Front Center' },
-      { id: '5', name: 'Green Tea', quantity: '50 bags', location: 'Pantry Shelf 2', stockLevel: 'high', category: 'Beverages', shelf: 'Pantry Shelf 2', position: 'Back Left' },
-      { id: '6', name: 'Granola Bars', quantity: '8 bars', location: 'Pantry Shelf 2', stockLevel: 'medium', category: 'Snacks', shelf: 'Pantry Shelf 2', position: 'Right Corner' },
+      { id: '6', name: 'Al Breakfast Cereals', quantity: '2 boxes', location: 'Pantry Shelf 2', stockLevel: 'medium', category: 'Breakfast', shelf: 'Pantry Shelf 2', position: 'Front Center' },
+      { id: '7', name: 'Oats', quantity: '1kg', location: 'Pantry Shelf 2', stockLevel: 'high', category: 'Breakfast', shelf: 'Pantry Shelf 2', position: 'Back Left' },
+      { id: '8', name: 'Bread', quantity: '2 loaves', location: 'Pantry Shelf 2', stockLevel: 'medium', category: 'Bakery', shelf: 'Pantry Shelf 2', position: 'Right Corner' },
+      { id: '9', name: 'Sugar', quantity: '1kg', location: 'Pantry Shelf 2', stockLevel: 'high', category: 'Sweeteners', shelf: 'Pantry Shelf 2', position: 'Center' },
+      { id: '10', name: 'Salt', quantity: '500g', location: 'Pantry Shelf 2', stockLevel: 'high', category: 'Seasonings', shelf: 'Pantry Shelf 2', position: 'Left Side' },
     ]
   },
   {
-    id: 'counter-top',
-    name: 'Counter Top',
-    location: 'Work Surface',
+    id: 'spice-rack',
+    name: 'Spice Rack',
+    location: 'Wall Mounted',
     icon: Utensils,
     color: 'text-neon-pink',
     items: [
-      { id: '7', name: 'Olive Oil', quantity: '250ml', location: 'Counter Top', stockLevel: 'low', category: 'Oils', expiryDate: '2025-12-01', shelf: 'Counter Top', position: 'Near Stove' },
-      { id: '8', name: 'Honey', quantity: '50g', location: 'Counter Top', stockLevel: 'empty', category: 'Sweeteners', shelf: 'Counter Top', position: 'Spice Rack' },
+      { id: '11', name: 'Honey', quantity: '50g', location: 'Spice Rack', stockLevel: 'empty', category: 'Sweeteners', shelf: 'Spice Rack', position: 'Top Shelf' },
+      { id: '12', name: 'Spices', quantity: '12 bottles', location: 'Spice Rack', stockLevel: 'medium', category: 'Seasonings', shelf: 'Spice Rack', position: 'Main Area' },
+      { id: '13', name: 'Sauces', quantity: '6 bottles', location: 'Spice Rack', stockLevel: 'medium', category: 'Condiments', shelf: 'Spice Rack', position: 'Bottom Shelf' },
+      { id: '14', name: 'Baking Powder', quantity: '200g', location: 'Spice Rack', stockLevel: 'low', category: 'Baking', shelf: 'Spice Rack', position: 'Side Compartment' },
     ]
   },
   {
-    id: 'coffee-station',
-    name: 'Coffee Station',
-    location: 'Corner Setup',
+    id: 'beverage-station',
+    name: 'Beverage Station',
+    location: 'Counter Setup',
     icon: Coffee,
     color: 'text-status-expiring',
     items: [
-      { id: '9', name: 'Ground Coffee', quantity: '200g', location: 'Coffee Station', stockLevel: 'low', category: 'Beverages', shelf: 'Coffee Station', position: 'Main Shelf' },
-      { id: '10', name: 'Coffee Filters', quantity: '20 pieces', location: 'Coffee Station', stockLevel: 'medium', category: 'Supplies', shelf: 'Coffee Station', position: 'Side Drawer' },
+      { id: '15', name: 'Coffee', quantity: '200g', location: 'Beverage Station', stockLevel: 'low', category: 'Beverages', shelf: 'Beverage Station', position: 'Main Shelf' },
+      { id: '16', name: 'Tea', quantity: '40 bags', location: 'Beverage Station', stockLevel: 'medium', category: 'Beverages', shelf: 'Beverage Station', position: 'Tea Drawer' },
+      { id: '17', name: 'Green Tea', quantity: '30 bags', location: 'Beverage Station', stockLevel: 'high', category: 'Beverages', shelf: 'Beverage Station', position: 'Side Compartment' },
+    ]
+  },
+  {
+    id: 'snack-cabinet',
+    name: 'Snack Cabinet',
+    location: 'Lower Level',
+    icon: Package,
+    color: 'text-neon-purple',
+    items: [
+      { id: '18', name: 'Kids Snacks', quantity: '8 packs', location: 'Snack Cabinet', stockLevel: 'medium', category: 'Snacks', shelf: 'Snack Cabinet', position: 'Front Section' },
+      { id: '19', name: 'Freeze-Dried Banana Snacks', quantity: '4 packs', location: 'Snack Cabinet', stockLevel: 'low', category: 'Snacks', shelf: 'Snack Cabinet', position: 'Back Section' },
+      { id: '20', name: 'Probiotic Yogurt Cubes', quantity: '6 packs', location: 'Snack Cabinet', stockLevel: 'medium', category: 'Snacks', shelf: 'Snack Cabinet', position: 'Side Area' },
+    ]
+  },
+  {
+    id: 'cleaning-cabinet',
+    name: 'Cleaning Cabinet',
+    location: 'Under Sink',
+    icon: Archive,
+    color: 'text-muted-foreground',
+    items: [
+      { id: '21', name: 'Dish Soap', quantity: '1 bottle', location: 'Cleaning Cabinet', stockLevel: 'low', category: 'Cleaning', shelf: 'Cleaning Cabinet', position: 'Main Shelf' },
+      { id: '22', name: 'Paper Towels', quantity: '4 rolls', location: 'Cleaning Cabinet', stockLevel: 'high', category: 'Cleaning', shelf: 'Cleaning Cabinet', position: 'Top Shelf' },
+      { id: '23', name: 'Laundry Detergent', quantity: '1 bottle', location: 'Cleaning Cabinet', stockLevel: 'medium', category: 'Cleaning', shelf: 'Cleaning Cabinet', position: 'Bottom Shelf' },
+      { id: '24', name: 'Smart Cleaning Pods', quantity: '12 pods', location: 'Cleaning Cabinet', stockLevel: 'high', category: 'Cleaning', shelf: 'Cleaning Cabinet', position: 'Side Compartment' },
+      { id: '25', name: 'Plasma Cleaning Spray', quantity: '2 bottles', location: 'Cleaning Cabinet', stockLevel: 'medium', category: 'Cleaning', shelf: 'Cleaning Cabinet', position: 'Corner' },
+      { id: '26', name: 'Organic Baby Powder', quantity: '1 container', location: 'Cleaning Cabinet', stockLevel: 'low', category: 'Baby Care', shelf: 'Cleaning Cabinet', position: 'Special Section' },
+    ]
+  },
+  {
+    id: 'specialty-items',
+    name: 'Specialty Items',
+    location: 'Special Storage',
+    icon: Package,
+    color: 'text-neon-cyan',
+    items: [
+      { id: '27', name: 'Premium Organic Tofu', quantity: '400g', location: 'Specialty Items', stockLevel: 'low', category: 'Plant Protein', shelf: 'Specialty Items', position: 'Refrigerated Section' },
     ]
   }
 ];

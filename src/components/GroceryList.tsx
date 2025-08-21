@@ -15,13 +15,20 @@ interface GroceryItem {
 }
 
 const groceryList: GroceryItem[] = [
-  { id: '1', name: 'Organic Milk', category: 'Dairy', priority: 'high', reason: 'Running low (1.2L left)', estimatedPrice: '$4.50' },
-  { id: '2', name: 'Baby Carrots', category: 'Vegetables', priority: 'high', reason: 'Expiring in 2 days', estimatedPrice: '$2.80' },
-  { id: '3', name: 'Apple Juice', category: 'Beverages', priority: 'medium', forRon: true, reason: 'Ron\'s favorite drink', estimatedPrice: '$3.20' },
-  { id: '4', name: 'Honey', category: 'Pantry', priority: 'high', reason: 'Out of stock', estimatedPrice: '$6.90' },
-  { id: '5', name: 'Kids Cereal', category: 'Breakfast', priority: 'medium', forRon: true, reason: 'Ron\'s breakfast', estimatedPrice: '$4.20' },
-  { id: '6', name: 'Ground Coffee', category: 'Beverages', priority: 'medium', reason: 'Low stock (200g left)', estimatedPrice: '$8.50' },
-  { id: '7', name: 'Greek Yogurt', category: 'Dairy', priority: 'low', reason: 'Backup supply', estimatedPrice: '$5.20' },
+  { id: '1', name: 'Onions', category: 'Vegetables', priority: 'medium', reason: 'Weekly supply needed', estimatedPrice: '$2.50' },
+  { id: '2', name: 'Avocado', category: 'Vegetables', priority: 'high', reason: 'Expiring soon (3 left)', estimatedPrice: '$4.20' },
+  { id: '3', name: 'Tomato', category: 'Vegetables', priority: 'medium', reason: 'Fresh supply for meals', estimatedPrice: '$3.80' },
+  { id: '4', name: 'Milk', category: 'Dairy', priority: 'high', reason: 'Running low (1.2L left)', estimatedPrice: '$4.50' },
+  { id: '5', name: 'Greek Yogurt', category: 'Dairy', priority: 'low', reason: 'Backup supply', estimatedPrice: '$5.20' },
+  { id: '6', name: 'Premium Organic Tofu', category: 'Plant Protein', priority: 'high', reason: 'Low stock (400g left)', estimatedPrice: '$6.90' },
+  { id: '7', name: 'Nutrient-Rich Apple Juice', category: 'Beverages', priority: 'medium', forRon: true, reason: 'Ron\'s favorite drink', estimatedPrice: '$3.20' },
+  { id: '8', name: 'Kids Snacks', category: 'Snacks', priority: 'medium', forRon: true, reason: 'Ron\'s snack supply', estimatedPrice: '$4.20' },
+  { id: '9', name: 'Chicken Breast', category: 'Meat', priority: 'medium', reason: 'Weekly protein supply', estimatedPrice: '$12.50' },
+  { id: '10', name: 'Organic Apples', category: 'Fruits', priority: 'medium', reason: 'Healthy snacks for family', estimatedPrice: '$5.80' },
+  { id: '11', name: 'Dish Soap', category: 'Cleaning', priority: 'high', reason: 'Low stock (1 bottle left)', estimatedPrice: '$3.90' },
+  { id: '12', name: 'Coffee', category: 'Beverages', priority: 'medium', reason: 'Low stock (200g left)', estimatedPrice: '$8.50' },
+  { id: '13', name: 'Basmati Rice', category: 'Grains', priority: 'high', reason: 'Low stock (2.5kg left)', estimatedPrice: '$7.20' },
+  { id: '14', name: 'Lettuce', category: 'Vegetables', priority: 'medium', reason: 'Fresh salad ingredients', estimatedPrice: '$2.80' },
 ];
 
 export const GroceryList = () => {
