@@ -194,8 +194,8 @@ export const InventoryExplorer = ({ onDeepDive }: { onDeepDive?: () => void }) =
               <Layers className="h-6 w-6 text-neon-cyan" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-foreground group-hover:text-neon-cyan transition-colors">Inventory Explorer</h2>
-              <p className="text-muted-foreground group-hover:text-neon-cyan/70 transition-colors">Deep dive into your household inventory • Click to explore</p>
+            <h2 className="text-2xl font-bold text-foreground group-hover:text-neon-cyan transition-colors">Smart Shelf Explorer</h2>
+              <p className="text-muted-foreground group-hover:text-neon-cyan/70 transition-colors">Organized by shelves & locations • Click to explore</p>
             </div>
           </div>
           <div className="flex gap-2">
