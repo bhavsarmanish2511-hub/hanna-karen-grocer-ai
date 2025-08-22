@@ -72,7 +72,10 @@ export const SmartRefrigerator = ({ onDeepDive }: { onDeepDive?: () => void }) =
                   ? 'bg-primary text-primary-foreground shadow-purple' 
                   : 'hover:bg-secondary/80'
               }`}
-              onClick={() => setSelectedCompartment(compartment)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedCompartment(compartment);
+              }}
             >
               {compartment}
             </Badge>
@@ -119,7 +122,10 @@ export const SmartRefrigerator = ({ onDeepDive }: { onDeepDive?: () => void }) =
         {filteredItems.length > 6 && (
           <div className="mt-4 text-center">
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
               className="text-neon-cyan hover:text-neon-purple transition-colors text-sm font-medium"
             >
               {isExpanded ? 'Show Less' : `Show All ${filteredItems.length} Items`}

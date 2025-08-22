@@ -197,8 +197,8 @@ export const SmartRefrigeratorModal = ({ isOpen, onClose }: SmartRefrigeratorMod
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {selectedCompartmentData.items.map((item) => (
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-h-[60vh] overflow-y-auto pr-2">
+                     {selectedCompartmentData.items.map((item) => (
                       <div
                         key={item.id}
                         className="p-6 rounded-xl bg-card/50 border border-border/30 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-neon/50"

@@ -77,7 +77,10 @@ export const SmartKitchen = ({ onDeepDive }: { onDeepDive?: () => void }) => {
                   ? 'bg-primary text-primary-foreground shadow-purple' 
                   : 'hover:bg-secondary/80'
               }`}
-              onClick={() => setSelectedLocation(location)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedLocation(location);
+              }}
             >
               {location}
             </Badge>
@@ -149,7 +152,10 @@ export const SmartKitchen = ({ onDeepDive }: { onDeepDive?: () => void }) => {
         {filteredItems.length > 4 && (
           <div className="mt-4 text-center">
             <button
-              onClick={() => setIsExpanded(!isExpanded)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
               className="text-neon-purple hover:text-neon-cyan transition-colors text-sm font-medium"
             >
               {isExpanded ? 'Show Less' : `Show All ${filteredItems.length} Items`}
